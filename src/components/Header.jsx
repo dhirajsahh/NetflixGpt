@@ -16,9 +16,7 @@ const Header = () => {
       .then(() => {
         dispatch(removeUser());
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   }
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {

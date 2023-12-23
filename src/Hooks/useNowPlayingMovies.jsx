@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { options } from "../utlis/FireBase";
+import { options } from "../utlis/Constant";
 import { addNowPlayingmovies } from "../Redux/moviesSlice";
 import { useDispatch } from "react-redux";
 
