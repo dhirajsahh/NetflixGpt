@@ -21,6 +21,8 @@ Currently, two official plugins are available:
 -Deploying our app to production
 -Create SignUp User Account
 -Crate Redux store 
+-made browse page private
+-unsubscribe to the onAuthStateChanged callback
 
 # Features
  -Login/Sign Up

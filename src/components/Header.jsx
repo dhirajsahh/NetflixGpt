@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utlis/FireBase";
-import { removeUser } from "../Redux/userSlice";
+import { addUser, removeUser } from "../Redux/userSlice";
+import { useEffect } from "react";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -13,12 +14,24 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         dispatch(removeUser());
-        navigate("/");
       })
       .catch((error) => {
-        navigate("/error");
+        console.log(error);
       });
   }
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(addUser({ uid, email, displayName, photoURL }));
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+    return () => unsubscribe();
+  }, []);
   return (
     <div className="absolute w-full flex items-center justify-between z-50 md:px-8 md:py-2 bg-gradient-to-b from-black">
       <img
@@ -27,14 +40,14 @@ const Header = () => {
         alt="logo"
       />
       <div>
-        {user ? (
+        {user && (
           <div className="flex flex-wrap gap-3">
             <img
               className="w-8 h-8 rounded-full"
               src={user?.photoURL}
               alt="PP"
             />
-            <p>{user?.displayName}</p>
+            <p className="">{user?.displayName}</p>
             <button
               className="bg-red-700 px-3 py-1 hover:opacity-80 text-white rounded-md"
               onClick={handleSignOut}
@@ -42,12 +55,6 @@ const Header = () => {
               SignOut
             </button>
           </div>
-        ) : (
-          <Link to="/login">
-            <button className="bg-red-700 px-3 py-1 hover:opacity-80 text-white rounded-md">
-              SignIn
-            </button>
-          </Link>
         )}
       </div>
     </div>
