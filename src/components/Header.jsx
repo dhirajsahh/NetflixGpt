@@ -4,13 +4,17 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utlis/FireBase";
 import { addUser, removeUser } from "../Redux/userSlice";
 import { useEffect } from "react";
-import { logo } from "../utlis/Constant";
+import { SUPPORTED_LANGUAGES, logo } from "../utlis/Constant";
+import { toggleGptSearch } from "../Redux/SearchSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { user } = useSelector((state) => state.user);
+  function handleGptSearch() {
+    dispatch(toggleGptSearch());
+  }
   function handleSignOut() {
     signOut(auth)
       .then(() => {
@@ -34,9 +38,23 @@ const Header = () => {
   return (
     <div className="absolute w-full flex items-center justify-between z-50 md:px-8 md:py-2 bg-gradient-to-b from-black">
       <img className="w-32  " src={logo} alt="logo" />
+
       <div>
         {user && (
           <div className="flex flex-wrap gap-3">
+            <button
+              className="bg-purple-700 px-3 py-1 hover:opacity-80 text-white rounded-md"
+              onClick={handleGptSearch}
+            >
+              SearchGpt
+            </button>
+            <select className="bg-gray-700 p-1 rounded-lg text-white">
+              {SUPPORTED_LANGUAGES.map((item) => (
+                <option key={item.identifier} value={item.identifier}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
             <img
               className="w-8 h-8 rounded-full"
               src={user?.photoURL}
