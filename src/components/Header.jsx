@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utlis/FireBase";
@@ -33,7 +33,7 @@ const Header = () => {
   }, []);
   return (
     <div className="absolute w-full flex items-center justify-between z-50 md:px-8 md:py-2 bg-gradient-to-b from-black">
-      <img className="w-32 md:w-44 " src={logo} alt="logo" />
+      <img className="w-32  " src={logo} alt="logo" />
       <div>
         {user && (
           <div className="flex flex-wrap gap-3">
@@ -42,7 +42,7 @@ const Header = () => {
               src={user?.photoURL}
               alt="PP"
             />
-            <p className="">{user?.displayName}</p>
+            <p className="text-white">{user?.displayName}</p>
             <button
               className="bg-red-700 px-3 py-1 hover:opacity-80 text-white rounded-md"
               onClick={handleSignOut}
