@@ -9,7 +9,6 @@ const SearchResult = ({ query }) => {
   const searchedMovies = useSelector(
     (state) => state?.movies?.getSearchedMovies
   );
-  console.log(searchedMovies);
   const getSearchedMovie = async () => {
     const data = await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${query}%20&include_adult=false&language=en-US&page=1`,

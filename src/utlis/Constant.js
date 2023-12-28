@@ -6,3 +6,19 @@ export const backgroundImage =
 
 export const dummyphotoURL =
   "https://www.ihna.edu.au/blog/wp-content/uploads/2022/10/user-dummy.png";
+
+export const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMTAzNDExNzUzMDVlNDhlOGVhNmQ5M2ZkMzQ5ZTUzYSIsInN1YiI6IjY1ODZjOWU5YjBjZDIwNTM5NDU3NWJhNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xXS_ox34fcLhu_CQ30ytfpdz5EI78Mad2VP6kR066gg",
+  },
+};
+export const IMG_CDN_LINK = "https://image.tmdb.org/t/p/w500";
+
+export const SUPPORTED_LANGUAGES = [
+  { identifier: "en", name: "English" },
+  { identifier: "nepali", name: "Nepali" },
+  { identifier: "japanese", name: "Japanese" },
+];
