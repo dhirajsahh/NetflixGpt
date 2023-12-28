@@ -11,8 +11,7 @@ export const options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMTAzNDExNzUzMDVlNDhlOGVhNmQ5M2ZkMzQ5ZTUzYSIsInN1YiI6IjY1ODZjOWU5YjBjZDIwNTM5NDU3NWJhNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xXS_ox34fcLhu_CQ30ytfpdz5EI78Mad2VP6kR066gg",
+    Authorization: import.meta.env.VITE_AUTHORIZATION_KEY,
   },
 };
 export const IMG_CDN_LINK = "https://image.tmdb.org/t/p/w500";
